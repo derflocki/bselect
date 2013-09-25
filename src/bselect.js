@@ -102,7 +102,7 @@
             // Adjust the size of the search input to match the container inner width
             searchInput = bselect.find( ".bselect-search-input" ).focus();
             inputWidth = searchInput.parent().width() - searchInput.next().outerWidth();
-            searchInput.innerWidth( inputWidth );
+            //searchInput.innerWidth( inputWidth );
 
             bselect.find( ".bselect-search-input" ).attr( "aria-expanded", "true" );
 
@@ -436,22 +436,22 @@
 
     // Run all the setup stuff
     function setup( elem, options ) {
-        var caret, label, container, id, dropdown;
+        var caret, label, container, id, dropdown, w;
         var $elem = $( elem );
 
         // First of, let's build the base HTML of BSelect
         id = ++elements;
-        container = $( "<div class='bselect' />", {
+        container = $( "<div class='bselect input-group' />", {
             id: "bselect-" + id
         });
 
-        dropdown = $( "<div class='bselect-dropdown' />" );
+        dropdown = $( "<div class='bselect-dropdown col-lg-12' />" );
 
         // Configure the search input
         if ( options.searchInput === true ) {
-            var search = $( "<div class='bselect-search' />" );
+            var search = $( "<div class='bselect-search input-group' />" );
 
-            $( "<input type='text' class='bselect-search-input' />" ).attr({
+            $( "<input type='text' class='bselect-search-input form-control' />" ).attr({
                 role: "combobox",
                 tabindex: 1,
                 "aria-expanded": "false",
@@ -462,8 +462,8 @@
                 //"aria-autocomplete": "list"
             }).appendTo( search );
 
-            $( "<span class='bselect-search-icon' />" )
-                .append( "<i class='icon-search'></i>" )
+            $( "<span class='input-group-addon' />" )
+                .append( "<i class='glyphicon glyphicon-search'></i>" )
                 .appendTo( search );
 
             search.appendTo( dropdown );
@@ -492,12 +492,15 @@
         $elem.bind( "bselectselected.bselect", options.selected );
         $elem.bind( "bselectsearch.bselect", options.search );
 
-        label = $( "<span />" ).addClass( "bselect-label" ).text( getPlaceholder( $elem ) );
-        caret = $( "<button type='button' />" ).addClass( "bselect-caret" )
-                                               .html( "<span class='caret'></span>" );
+        label = $( "<span />" )
+            .addClass( "bselect-label form-control" ).text( getPlaceholder( $elem ) );
+        caret = $( '<span class="input-group-btn"><button type="button" ' +
+            'class="bselect-caret btn btn-default"><span class="caret"></span></button></span>' );
         container.prepend( caret ).prepend( label );
 
-        label.outerWidth( $elem.outerWidth() - caret.outerWidth() );
+        w = $elem.outerWidth() - caret.outerWidth();
+        label.css( { 'width': ''+w+'px', 'max-width': ''+w+'px'} );
+ 
 
         // Hide this ugly select!
         $elem.addClass( "bselect-inaccessible" );
@@ -589,14 +592,15 @@
 
     // #18 - resizing within the original element
     $( window ).resize(function() {
-        var i, len, data, caret;
+        var i, len, data, caret, w;
 
         for ( i = 0, len = instances.length; i < len; i++ ) {
             data = instances[ i ].data( dataName );
             caret = data.element.find( ".bselect-caret" );
-
+            
+            w = instances[ i ].outerWidth() - caret.outerWidth();
             data.element.find( ".bselect-label" )
-                        .outerWidth( instances[ i ].outerWidth() - caret.outerWidth() );
+                .css( { 'width': ''+w+'px', 'max-width': ''+w+'px'} );
         }
     });
 

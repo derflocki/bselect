@@ -31,23 +31,13 @@
 // --------------------------------
 
 // Label and caret have basically the same styles
-.bselect-label,
 .bselect-caret {
 	position: relative;
 	display: inline-block;
-	height: @baseLineHeight;
-	color: @grayDark;
-	font-size: @baseFontSize;
-	line-height: @baseLineHeight;
-	*line-height: @baseLineHeight;
-	#bselect-mixins > .vertical-gradient(@btnBackground, @btnBackgroundHighlight);
-	border: 1px solid @btnBorder;
-	*border: 0; // Remove the border to prevent IE7's black border on input:focus
-	border-bottom-color: darken(@btnBorder, 10%);
+
 	cursor: pointer;
 	vertical-align: middle;
-
-	&:hover {
+	&:focus {
 		background-position: 0 -15px;
 		background-color: darken(@white, 10%);
 		*background-color: darken(@white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
@@ -57,15 +47,14 @@
 }
 
 .bselect-label {
-	padding: 4px 12px;
 	overflow: hidden;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 	#bselect-mixins > .border-radius(@baseBorderRadius 0 0 @baseBorderRadius);
 }
 
 .bselect-caret {
+	background-color: rgb(238, 238, 238);
 	margin-left: -1px;
-	padding: 4px 5px;
 	#bselect-mixins > .border-radius(0 @baseBorderRadius @baseBorderRadius 0);
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
@@ -105,9 +94,9 @@
 	left: 0;
 	z-index: @zindexDropdown;
 	display: none;
-	width: 97%;
+	width: 100%;
 	margin: 2px 0 0;
-	padding: 5px 1.5%;
+	padding: 5px 5px;
 	background-color: @dropdownBackground;
 	border: 1px solid fade(@dropdownBorder, 100%);
 	border: 1px solid @dropdownBorder;
@@ -120,12 +109,7 @@
 	vertical-align: middle;
 	white-space: nowrap;
 
-	> .bselect-search-input,
-	> .bselect-search-icon {
-		display: inline-block;
-		height: @baseLineHeight;
-		vertical-align: middle;
-	}
+
 
 	> .bselect-search-input {
 		position: relative;
