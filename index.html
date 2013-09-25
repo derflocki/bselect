@@ -8,8 +8,6 @@
 
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.css" />
 <link rel="stylesheet" href="dist/css/bselect.min.css" />
 
 <!--[if lte IE 8]>
@@ -160,29 +158,15 @@
 
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script
-		src="//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>
 	<script src="dist/js/bselect.js"></script>
+	
 	<script>
 		(function( $ ) {
 			"use strict";
-
-			$( document ).ready(function() {
+			$(document).ready(function() {
 				$("[id^='bselect-']").bselect();
-
-			// Clean up the mess with imported files
-			if ( window.localStorage !== undefined ) {
-			for (var k in localStorage) {
-			if ( localStorage.hasOwnProperty( k ) && k.indexOf(".less") > -1 ) {
-			delete localStorage[ k ];
-			}
-			}
-			}
-
-			window.prettyPrint && prettyPrint();
 			});
-
-			})( jQuery );
-		</script>
+		})( jQuery );
+</script>
 </body>
 </html>
