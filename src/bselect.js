@@ -556,7 +556,7 @@
             showOn: "both",
             clearSearchOnExit: true,
             minSearchInput: 0,
-            animationDuration: 300,
+            animationDuration: 0,
             searchInput: true,
             search: null,
             select: null,
