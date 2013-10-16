@@ -4,7 +4,7 @@
 <title>bselect</title>
 <meta charset="UTF-8" />
 <meta name="description"
-	content="bselect - The select decorator component that was missing for Twitter Bootstrap." />
+	content="bselect - The select decorator component that was missing for Twitter Bootstrap 3." />
 
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/css/bootstrap.min.css" />
@@ -31,7 +31,34 @@
 				style="width: 165px; height: 20px; border: 0"></iframe>
 		</div>
 	</header>
-	<div class="container">
+	
+<div data-keyboard="true" id="new-verhaletnis-modal" class="modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+					<h3>Inside a modal</h3>
+			</div>
+			<div class="modal-body">
+				<form id="create-verhaeltnis-form" class="form-horizontal" action="/~fdorn/accmanv4/web/index.php/berechtigungen/-143343" method="post" role="form">
+						<div class="col-lg-12">
+						<select id="bselect-modal" class="form-control">
+							<option value="">Select a band</option>
+							<option value="AC/DC">AC/DC</option>
+							<option value="Led Zeppelin">Led Zeppelin</option>
+							<option value="The Who">The Who</option>
+							<option value="Van Halen">Van Halen</option>
+						</select>
+					</div>
+				</form>
+			</div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+		</div>
+	</div>
+</div>
+<div class="container">
 		<h2>Default functionality</h2>
 		<p>
 			The following functionality of bselect is default of the
@@ -42,7 +69,7 @@
 
 		<h3>Standard select</h3>
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-md-6">
 				<label for="select-standard">Turns this:</label> 
 				<select
 					class="form-control languages col-lg-12" id="select-standard">
@@ -78,7 +105,7 @@
 				</select>
 			</div>
 
-			<div class="col-lg-6">
+			<div class="col-md-6">
 				<label for="bselect-standard">Into this:</label> 
 				<select class="form-control languages col-lg-12" id="bselect-standard">
 					<option value="">Select an option</option>
@@ -115,7 +142,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-md-6">
 				<h3>&lt;optgroup&gt; support</h3>
 				<select class="form-control col-lg-12" id="bselect-optgroup"
 					data-placeholder="Select a rock band">
@@ -142,7 +169,7 @@
 				</select>
 			</div>
 
-			<div class="col-lg-6">
+			<div class="col-md-6">
 				<h3>Disabled select</h3>
 				<select class="form-control col-lg-12" id="bselect-disabled"
 					data-placeholder="Select a rock band" disabled="disabled">
@@ -154,10 +181,29 @@
 				</select>
 			</div>
 		</div>
+		
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<h3>Inseide hidden elements</h3>
+				<p>
+				When using it in a initially hidden element like a modal you have .resize() the parent before showing to properly size it
+				</p>
+				<pre>//resize the modal so bselect updates the width
+$('.modal').on('show.bs.modal', function() {
+	setTimeout(function() {
+		$(this).trigger('resize');
+	});
+});</pre>
+				<button data-target="#new-verhaletnis-modal" data-toggle="modal" class="btn btn-success btn-block" type="button">
+					<i class="glyphicon glyphicon-plus"></i> Open modal
+				</button>
+			</div>
+		</div>
 	</div>
-
 	<script
 		src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="dist/js/bselect.js"></script>
 	
 	<script>
@@ -166,6 +212,12 @@
 			$(document).ready(function() {
 				$("[id^='bselect-']").bselect();
 			});
+			$('.modal').on('show.bs.modal', function() {
+				setTimeout(function() {
+					$(this).trigger('resize');
+				});
+			});
+
 		})( jQuery );
 </script>
 </body>
