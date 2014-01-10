@@ -1,5 +1,5 @@
 /*!
- * BSelect v0.3.4 - 2013-10-07
+ * BSelect v0.3.4 - 2014-01-10
  * 
  * Created by Gustavo Henke <gustavo@injoin.com.br>
  * http://gustavohenke.github.io/bselect/
@@ -15,12 +15,39 @@
 		background-repeat: repeat-x;
 		filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@startColor),argb(@endColor))); // IE9 and down
 	}
-
-	.border-radius(@radius) {
-		-webkit-border-radius: @radius;
-		-moz-border-radius: @radius;
-		border-radius: @radius;
-	}
+.border-radius-left(@bottomleft: 0, @topleft: 0) {
+  -webkit-border-bottom-left-radius: @bottomleft;
+  -webkit-border-top-left-radius: @topleft;
+  -moz-border-radius-bottomleft: @bottomleft;
+  -moz-border-radius-topleft: @topleft;
+  border-bottom-left-radius: @bottomleft;
+  border-top-left-radius: @topleft;
+  .background-clip(padding-box); 
+}
+.border-radius-right(@topright: 0, @bottomright: 0) {
+  -webkit-border-top-right-radius: @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -moz-border-radius-topright: @topright;
+  -moz-border-radius-bottomright: @bottomright;
+  border-top-right-radius: @topright;
+  border-bottom-right-radius: @bottomright;
+  .background-clip(padding-box);
+}
+.border-radius(@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius: @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius: @bottomleft;
+  -webkit-border-top-left-radius: @topleft;
+  -moz-border-radius-topright: @topright;
+  -moz-border-radius-bottomright: @bottomright;
+  -moz-border-radius-bottomleft: @bottomleft;
+  -moz-border-radius-topleft: @topleft;
+  border-top-right-radius: @topright;
+  border-bottom-right-radius: @bottomright;
+  border-bottom-left-radius: @bottomleft;
+  border-top-left-radius: @topleft;
+  .background-clip(padding-box);
+}
 
 	.box-shadow(@shadow) {
 		-webkit-box-shadow: @shadow;
@@ -45,4 +72,9 @@
 		opacity: @opacity / 100;
 		filter: ~"alpha(opacity=@{opacity})";
 	}
+	.background-clip(@argument: padding-box) {
+  -moz-background-clip: @argument;
+  -webkit-background-clip: @argument;
+  background-clip: @argument;
+}
 }
