@@ -21,11 +21,6 @@
 		#bselect-mixins > .opacity(65);
 	}
 }
-.open .bselect-label, .open .bselect-caret {
-	border-color: rgb(102, 175, 233);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
-    outline: 0 none;
-}
 // Label/caret
 // --------------------------------
 
@@ -116,10 +111,8 @@
 		padding: 4px 6px;
 		margin: 0;
 		background: @inputBackground;
-		border: 1px solid @inputBorder;
 		cursor: text;
-		#bselect-mixins > .border-radius(@baseBorderRadius, 0, 0, @baseBorderRadius);
-		#bselect-mixins > .box-shadow(inset 0 1px 1px rgba(0, 0, 0, .075));
+		#bselect-mixins > .border-radius-right(0, 0);
 
 		// Make input on top when focused so blue border and shadow always show
 		&:focus {
@@ -164,7 +157,6 @@
 		padding: @bselectItemPadding;
 		color: @dropdownLinkColor;
 		text-decoration: none;
-		white-space: normal;
 	}
 
 	&.grouped {
