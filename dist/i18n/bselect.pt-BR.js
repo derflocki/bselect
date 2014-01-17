@@ -1,5 +1,5 @@
 /*!
- * BSelect v0.3.4 - 2014-01-10
+ * BSelect v0.3.4 - 2014-01-17
  * 
  * Created by Gustavo Henke <gustavo@injoin.com.br>
  * http://gustavohenke.github.io/bselect/

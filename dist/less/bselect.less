@@ -1,5 +1,5 @@
 /*!
- * BSelect v0.3.4 - 2014-01-10
+ * BSelect v0.3.4 - 2014-01-17
  * 
  * Created by Gustavo Henke <gustavo@injoin.com.br>
  * http://gustavohenke.github.io/bselect/
@@ -124,7 +124,7 @@
 		background: @inputBackground;
 		border: 1px solid @inputBorder;
 		cursor: text;
-		#bselect-mixins > .border-radius(@baseBorderRadius, 0, 0, @baseBorderRadius);
+		#bselect-mixins > .border-radius-right(0, 0);
 		#bselect-mixins > .box-shadow(inset 0 1px 1px rgba(0, 0, 0, .075));
 
 		// Make input on top when focused so blue border and shadow always show
@@ -170,7 +170,12 @@
 		padding: @bselectItemPadding;
 		color: @dropdownLinkColor;
 		text-decoration: none;
-		white-space: normal;
+		white-space: pre;
+		height: @baseLineHeight;
+		overflow-x: hidden;
+		-webkit-box-sizing: content-box;
+		-moz-box-sizing: content-box;
+		box-sizing: content-box;
 	}
 
 	&.grouped {

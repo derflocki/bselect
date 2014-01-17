@@ -1,5 +1,5 @@
 /*!
- * BSelect v0.3.4 - 2014-01-10
+ * BSelect v0.3.4 - 2014-01-17
  * 
  * Created by Gustavo Henke <gustavo@injoin.com.br>
  * http://gustavohenke.github.io/bselect/
@@ -366,8 +366,9 @@
     function adjustDropdownHeight( $elem ) {
         var list = $elem.find( ".bselect-option-list" );
         var len = list.find( "li:visible" ).length;
-
-        list.innerHeight( parseInt( list.css( "line-height" ), 10 ) * 1.5 * ( len < 5 ? len : 5 ) );
+		//TODO: make sure we-don't overlow
+        list.innerHeight( parseInt( list.css( "line-height" ), 10 ) * 
+			1.5 * ( len < 10 ? len : 10 ) );
     }
 
     // Updates visual properties of the bselect after the plugin was initialized
