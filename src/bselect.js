@@ -272,15 +272,16 @@
 
             this.find( "option, > optgroup" ).each(function() {
                 var classes, li;
-                var isOption = $( this ).is( "option" );
+                var $this = $( this );
+                var isOption = $this.is( "option" );
 
-                if ( isOption && !this.value ) {
+                if (( isOption && !this.value ) || this.disabled) {
                     return;
                 }
 
                 if ( isOption ) {
                     classes = "bselect-option";
-                    if ( $( this ).closest( "optgroup" ).length ) {
+                    if ( $this.closest( "optgroup" ).length ) {
                         classes += " grouped";
                     }
                 } else {
