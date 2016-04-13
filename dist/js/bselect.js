@@ -1,5 +1,5 @@
 /*!
- * BSelect v0.3.4 - 2014-01-17
+ * BSelect v0.3.7 - 2016-04-13
  * 
  * Created by Gustavo Henke <gustavo@injoin.com.br>
  * http://gustavohenke.github.io/bselect/
@@ -78,7 +78,7 @@
             bselect = data.element;
             dropdown = bselect.find( ".bselect-dropdown" );
 
-            dropdown.css( "left", "-9999em" ).show();
+            dropdown.css( "left", "-9999em" ).show(); //move offscreen and show
             adjustDropdownHeight( bselect );
 
             // Adjust the scrolling to match the current select option position - issue #10
@@ -95,7 +95,7 @@
                 }
             }
 
-            dropdown.hide().css( "left", "auto" );
+            dropdown.hide().css( "left", "" ); //hide and move to css defined postition
 
             dropdown.slideDown( _callMethod( this, "option", "animationDuration" ) );
             this.data( dataName, $.extend( data, {
@@ -278,17 +278,22 @@
 
             this.find( "option, > optgroup" ).each(function() {
                 var classes, li;
-                var isOption = $( this ).is( "option" );
+                var $this = $( this );
+                var isOption = $this.is( "option" );
 
-                if ( isOption && !this.value ) {
+                if (( isOption && !this.value )) {
                     return;
                 }
 
                 if ( isOption ) {
-                    classes = "bselect-option";
-                    if ( $( this ).closest( "optgroup" ).length ) {
-                        classes += " grouped";
-                    }
+					if(this.disabled) {
+						classes = "bselect-option-disabled";
+					} else {
+						classes = "bselect-option";
+					}
+					if ( $this.closest( "optgroup" ).length ) {
+						classes += " grouped";
+					}
                 } else {
                     classes = "bselect-option-group";
                 }
@@ -302,10 +307,14 @@
                 });
 
                 if ( isOption ) {
+					if(this.disabled) {
+						li.html( "<span>" + this.text + "</span>" );
+					} else {
                     li.data( "value", this.value );
                     mapping[ this.value ] = i;
 
                     li.html( "<a href='#'>" + this.text + "</a>" );
+					}
                 } else {
                     li.text( this.label );
                 }

@@ -1,5 +1,5 @@
 /*!
- * BSelect v0.3.4 - 2014-01-17
+ * BSelect v0.3.7 - 2016-04-13
  * 
  * Created by Gustavo Henke <gustavo@injoin.com.br>
  * http://gustavohenke.github.io/bselect/
@@ -13,8 +13,6 @@
 // --------------------------------
 
 .bselect {
-	position: relative;
-	display: inline-block;
 	white-space: nowrap;
 
 	&, input, button {
@@ -26,11 +24,6 @@
 	&.disabled {
 		#bselect-mixins > .opacity(65);
 	}
-}
-.open .bselect-label, .open .bselect-caret {
-	border-color: rgb(102, 175, 233);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
-    outline: 0 none;
 }
 // Label/caret
 // --------------------------------
@@ -122,10 +115,8 @@
 		padding: 4px 6px;
 		margin: 0;
 		background: @inputBackground;
-		border: 1px solid @inputBorder;
 		cursor: text;
 		#bselect-mixins > .border-radius-right(0, 0);
-		#bselect-mixins > .box-shadow(inset 0 1px 1px rgba(0, 0, 0, .075));
 
 		// Make input on top when focused so blue border and shadow always show
 		&:focus {
@@ -164,25 +155,22 @@
 
 // Dropdown items
 // --------------------------------
-.bselect-option {
-	> a {
+.bselect-option, .bselect-option-disabled {
+	> a,span {
 		display: block;
 		padding: @bselectItemPadding;
-		color: @dropdownLinkColor;
 		text-decoration: none;
-		white-space: pre;
-		height: @baseLineHeight;
-		overflow-x: hidden;
-		-webkit-box-sizing: content-box;
-		-moz-box-sizing: content-box;
-		box-sizing: content-box;
 	}
 
 	&.grouped {
 		// Should have this extra padding, to visually indicate that it's grouped
 		padding-left: 15px;
 	}
-
+}
+.bselect-option {
+	> a {
+		color: @dropdownLinkColor;
+	}
 	&:focus {
 		outline: 0; // No outline directly in the LI
 	}
@@ -206,7 +194,14 @@
 		#bselect-mixins > .vertical-gradient(@dropdownLinkBackgroundActive, darken(@dropdownLinkBackgroundActive, 5%));
 	}
 }
-
+.bselect-option-disabled {
+	color: graytext;
+	pointer-events: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-select: none;
+}
 .bselect-option-group {
 	padding: @bselectItemPadding;
 	font-weight: bold;
