@@ -281,15 +281,19 @@
                 var $this = $( this );
                 var isOption = $this.is( "option" );
 
-                if (( isOption && !this.value ) || this.disabled) {
+                if (( isOption && !this.value )) {
                     return;
                 }
 
                 if ( isOption ) {
-                    classes = "bselect-option";
-                    if ( $this.closest( "optgroup" ).length ) {
-                        classes += " grouped";
-                    }
+					if(this.disabled) {
+						classes = "bselect-option-disabled";
+					} else {
+						classes = "bselect-option";
+					}
+					if ( $this.closest( "optgroup" ).length ) {
+						classes += " grouped";
+					}
                 } else {
                     classes = "bselect-option-group";
                 }
@@ -303,10 +307,14 @@
                 });
 
                 if ( isOption ) {
+					if(this.disabled) {
+						li.html( "<span>" + this.text + "</span>" );
+					} else {
                     li.data( "value", this.value );
                     mapping[ this.value ] = i;
 
                     li.html( "<a href='#'>" + this.text + "</a>" );
+					}
                 } else {
                     li.text( this.label );
                 }
