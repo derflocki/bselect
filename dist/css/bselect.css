@@ -5,8 +5,6 @@
  * http://gustavohenke.github.io/bselect/
  */
 .bselect {
-  position: relative;
-  display: inline-block;
   white-space: nowrap;
 }
 .bselect,
