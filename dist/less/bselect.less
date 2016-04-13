@@ -155,11 +155,10 @@
 
 // Dropdown items
 // --------------------------------
-.bselect-option {
-	> a {
+.bselect-option, .bselect-option-disabled {
+	> a,span {
 		display: block;
 		padding: @bselectItemPadding;
-		color: @dropdownLinkColor;
 		text-decoration: none;
 	}
 
@@ -167,7 +166,11 @@
 		// Should have this extra padding, to visually indicate that it's grouped
 		padding-left: 15px;
 	}
-
+}
+.bselect-option {
+	> a {
+		color: @dropdownLinkColor;
+	}
 	&:focus {
 		outline: 0; // No outline directly in the LI
 	}
@@ -191,7 +194,14 @@
 		#bselect-mixins > .vertical-gradient(@dropdownLinkBackgroundActive, darken(@dropdownLinkBackgroundActive, 5%));
 	}
 }
-
+.bselect-option-disabled {
+	color: graytext;
+	pointer-events: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-select: none;
+}
 .bselect-option-group {
 	padding: @bselectItemPadding;
 	font-weight: bold;

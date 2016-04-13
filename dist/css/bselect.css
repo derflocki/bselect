@@ -186,14 +186,20 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
-.bselect-option > a {
+.bselect-option > a,
+.bselect-option-disabled > a,
+.bselect-option span,
+.bselect-option-disabled span {
   display: block;
   padding: 5px 20px 5px 15px;
-  color: #333333;
   text-decoration: none;
 }
-.bselect-option.grouped {
+.bselect-option.grouped,
+.bselect-option-disabled.grouped {
   padding-left: 15px;
+}
+.bselect-option > a {
+  color: #333333;
 }
 .bselect-option:focus {
   outline: 0;
@@ -227,6 +233,14 @@
   background-image: linear-gradient(to bottom, #0088cc, #0077b3);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+}
+.bselect-option-disabled {
+  color: graytext;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-select: none;
 }
 .bselect-option-group {
   padding: 5px 20px 5px 15px;
