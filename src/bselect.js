@@ -72,7 +72,7 @@
             bselect = data.element;
             dropdown = bselect.find( ".bselect-dropdown" );
 
-            dropdown.css( "left", "-9999em" ).show();
+            dropdown.css( "left", "-9999em" ).show(); //move offscreen and show
             adjustDropdownHeight( bselect );
 
             // Adjust the scrolling to match the current select option position - issue #10
@@ -89,7 +89,7 @@
                 }
             }
 
-            dropdown.hide().css( "left", "auto" );
+            dropdown.hide().css( "left", "" ); //hide and move to css defined postition
 
             dropdown.slideDown( _callMethod( this, "option", "animationDuration" ) );
             this.data( dataName, $.extend( data, {
