@@ -448,10 +448,11 @@
     function setup( elem, options ) {
         var caret, label, container, id, dropdown, w;
         var $elem = $( elem );
+        var ID = elem.id || Date.now();
 
         // First of, let's build the base HTML of BSelect
         id = ++elements;
-        container = $( "<div class='bselect input-group' />", {
+        container = $( "<div class='bselect input-group bselect-for-id-" + ID + "' />", {
             id: "bselect-" + id
         });
 
