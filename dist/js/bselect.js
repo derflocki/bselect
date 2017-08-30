@@ -1,5 +1,5 @@
 /*!
- * BSelect v0.3.7 - 2016-04-13
+ * BSelect v0.3.9 - 2017-08-30
  * 
  * Created by Gustavo Henke <gustavo@injoin.com.br>
  * http://gustavohenke.github.io/bselect/
@@ -454,10 +454,11 @@
     function setup( elem, options ) {
         var caret, label, container, id, dropdown, w;
         var $elem = $( elem );
+        var ID = elem.id || Date.now();
 
         // First of, let's build the base HTML of BSelect
         id = ++elements;
-        container = $( "<div class='bselect input-group' />", {
+        container = $( "<div class='bselect input-group bselect-for-id-" + ID + "' />", {
             id: "bselect-" + id
         });
 
