@@ -3,82 +3,22 @@
 
 @bselectItemPadding: 5px 20px 5px 15px;
 
-// Root element styles
-// --------------------------------
-
 .bselect {
-	white-space: nowrap;
-
-	&, input, button {
-		font-family: @sansFontFamily;
-		font-size: @baseFontSize;
-		line-height: @baseLineHeight;
-	}
-
-	&.disabled {
-		#bselect-mixins > .opacity(65);
-	}
+	position: relative;
 }
 // Label/caret
 // --------------------------------
 
 // Label and caret have basically the same styles
 .bselect-caret {
-	position: relative;
-	display: inline-block;
-
-	cursor: pointer;
-	vertical-align: middle;
-	&:focus {
-		background-position: 0 -15px;
-		background-color: darken(@white, 10%);
-		*background-color: darken(@white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
-
-		#bselect-mixins > .transition(background-position .1s linear);
-	}
+	cursor: default;
 }
 
 .bselect-label {
 	overflow: hidden;
-	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
-	#bselect-mixins > .border-radius-right(0, 0);
 	cursor: default;
+	white-space: nowrap;
 }
-
-.bselect-caret {
-	background-color: rgb(238, 238, 238);
-	margin-left: -1px;
-	#bselect-mixins > .border-radius-left(0, 0);
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
-
-	> .caret {
-		display: inline-block;
-		width: 0;
-		height: 0;
-		margin: 8px 0 0;
-		border-left: 4px solid transparent;
-		border-right: 4px solid transparent;
-		border-top: 4px solid @grayDark;
-		content: "";
-		vertical-align: top;
-	}
-}
-
-// Styles for the disabled bselect
-.bselect.disabled .bselect-label,
-.bselect.disabled .bselect-caret {
-	background-image: none;
-	cursor: not-allowed;
-	#bselect-mixins > .transition(none);
-	#bselect-mixins > .box-shadow(none);
-
-	&:hover {
-		background-color: mix(@btnBackground, @btnBackgroundHighlight, 60%);
-	}
-}
-
 // Dropdown
 // --------------------------------
 .bselect-dropdown {
@@ -201,67 +141,6 @@
 	font-weight: bold;
 	cursor: default;
 	white-space: normal;
-}
-
-
-// Sizes
-// --------------------------------
-
-// Mini
-.bselect.bselect-mini {
-	.bselect-label,
-	.bselect-caret {
-		padding: @paddingMini;
-		font-size: @fontSizeMini;
-	}
-
-	.bselect-caret {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-}
-
-// Small
-.bselect.bselect-small {
-	.bselect-label,
-	.bselect-caret {
-		padding: @paddingSmall;
-		font-size: @fontSizeSmall;
-	}
-
-	.bselect-caret {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
-}
-
-// Large
-.bselect.bselect-large {
-	.bselect-label,
-	.bselect-caret {
-		padding: @paddingLarge;
-		font-size: @fontSizeLarge;
-	}
-
-	.bselect-caret {
-		padding-left: 12px;
-		padding-right: 12px;
-	}
-
-	.bselect-caret .caret {
-		border-left-width:  5px;
-		border-right-width: 5px;
-		border-top-width:   5px;
-	}
-}
-
-// Shared styles across all sizes
-.bselect {
-	&.bselect-mini,
-	&.bselect-small,
-	&.bselect-large {
-		margin-top: 6px;
-	}
 }
 
 // Utils

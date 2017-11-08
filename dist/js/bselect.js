@@ -1,5 +1,5 @@
 /*!
- * BSelect v0.3.9 - 2017-08-30
+ * BSelect v0.3.10 - 2017-11-08
  * 
  * Created by Gustavo Henke <gustavo@injoin.com.br>
  * http://gustavohenke.github.io/bselect/
@@ -275,6 +275,12 @@
             var i = 0;
 
             bselect.toggleClass( "disabled", this.prop( "disabled" ) );
+            if(this.prop( "disabled" )) {
+                bselect.find( ".bselect-label, .bselect-caret" ).attr( "disabled", true);
+            } else {
+                bselect.find( ".bselect-label, .bselect-caret" ).removeAttr( "disabled" );
+            }
+            //bselect.toggleClass( "disabled", this.prop( "disabled" ) );
 
             this.find( "option, > optgroup" ).each(function() {
                 var classes, li;
@@ -458,9 +464,10 @@
 
         // First of, let's build the base HTML of BSelect
         id = ++elements;
-        container = $( "<div class='bselect input-group bselect-for-id-" + ID + "' />", {
+        container = $( "<div class='bselect bselect-for-id-" + ID + "' />", {
             id: "bselect-" + id
         });
+        var ig = $('<div class="input-group"/>');
 
         dropdown = $( "<div class='bselect-dropdown col-lg-12' />" );
 
@@ -492,7 +499,7 @@
             id: "bselect-option-list-" + id,
             role: "listbox"
         }).appendTo( dropdown );
-
+        container.append(ig);
         container.append( dropdown ).insertAfter( $elem );
 
         // Save some precious data in the original select now, as we have the container in the DOM
@@ -502,6 +509,15 @@
             open: false
         });
 
+        label = $( '<span class="bselect-label form-control"/>' )
+            .text( getPlaceholder( $elem ) );
+        caret = $( '<span class="input-group-btn"><button type="button" ' +
+            'class="bselect-caret btn btn-default"><span class="caret"></span></button></span>' );
+        ig.append( label ).append( caret );
+
+        w = $elem.outerWidth() - caret.outerWidth();
+        label.css( { 'width': ''+w+'px', 'max-width': ''+w+'px'} );
+
         updateOptions( $elem, $.bselect.defaults, options );
         _callMethod( $elem, "refresh" );
 
@@ -509,14 +525,7 @@
         $elem.bind( "bselectselected.bselect", options.selected );
         $elem.bind( "bselectsearch.bselect", options.search );
 
-        label = $( "<span />" )
-            .addClass( "bselect-label form-control" ).text( getPlaceholder( $elem ) );
-        caret = $( '<span class="input-group-btn"><button type="button" ' +
-            'class="bselect-caret btn btn-default"><span class="caret"></span></button></span>' );
-        container.prepend( caret ).prepend( label );
 
-        w = $elem.outerWidth() - caret.outerWidth();
-        label.css( { 'width': ''+w+'px', 'max-width': ''+w+'px'} );
  
 
         // Hide this ugly select!
@@ -607,14 +616,15 @@
         }
     });
 
-    // #18 - resizing within the original element
+
+	// #18 - resizing within the original element
     $( window ).resize(function() {
         var i, len, data, caret, w;
 
         for ( i = 0, len = instances.length; i < len; i++ ) {
             data = instances[ i ].data( dataName );
             caret = data.element.find( ".bselect-caret" );
-            
+
             w = instances[ i ].outerWidth() - caret.outerWidth();
             data.element.find( ".bselect-label" )
                 .css( { 'width': ''+w+'px', 'max-width': ''+w+'px'} );
